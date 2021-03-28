@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    // module 输出类型
+    "module": "esnext",
+    "outDir": "build",
+    "target": "ES5",
+    "declaration": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/components/GridFlowChart"],
+  "exclude": ["node_modules"]
+}
