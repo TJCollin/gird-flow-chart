@@ -6,4 +6,5 @@ cache:
   - node_modules
 en:
  - CI=true
- 
+script:
+  npm run build
