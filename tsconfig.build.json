@@ -2,7 +2,7 @@
   "compilerOptions": {
     // module 输出类型
     "module": "esnext",
-    "outDir": "build",
+    "outDir": "dist",
     "target": "ES5",
     "declaration": true,
     "jsx": "react",
