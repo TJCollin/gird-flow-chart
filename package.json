@@ -1,12 +1,32 @@
 {
-  "name": "grid-flow-chart",
-  "version": "0.1.0",
-  "private": true,
-  "main": "build/index.js",
-  "module": "build/index.js",
-  "types": "build/index.d.ts",
+  "name": "grid-flow-chart-react",
+  "version": "0.1.2",
+  "author": "tj-collin",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "flow chart"
+  ],
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TJCollin/grid-flow-chart"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": ">=17.0.1",
+    "react-dom": ">=17.0.1"
+  },
   "dependencies": {
-    "@svgdotjs/svg.js": "^3.0.16",
+    "@svgdotjs/svg.js": "^3.0.16"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -24,14 +44,15 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "clean": "rimraf ./build",
+    "clean": "rimraf ./dist",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:prod": "npm run build-ts && npm run build-css",
     "build-ts": "npm run clean && tsc -p tsconfig.build.json",
-    "build-css":"node-sass ./src/components/GridFlowChart/style.scss ./build/index.css",
+    "build-css": "node-sass ./src/components/GridFlowChart/style.scss ./dist/index.css",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepublish": "npm run build:prod"
   },
   "eslintConfig": {
     "extends": [
