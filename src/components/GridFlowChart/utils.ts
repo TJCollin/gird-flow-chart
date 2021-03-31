@@ -274,7 +274,7 @@ const points = (
  * @param points
  * @returns
  */
-const drawLineWithArc = (points: number[][]): string => {
+export const drawLineWithArc = (points: number[][]): string => {
   const len = points.length;
   if (len === 2) {
     return `M${points[0].join(" ")} L${points[1].join(" ")}`;
@@ -363,7 +363,7 @@ const drawLineWithArc = (points: number[][]): string => {
  * @param arrowZoom
  * @returns
  */
-const nodeMiddle = (
+export const nodeMiddle = (
   node: FlowNode,
   type: number,
   direction: Direction,
