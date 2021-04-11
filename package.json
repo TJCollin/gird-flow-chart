@@ -1,6 +1,6 @@
 {
   "name": "grid-flow-chart-react",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "author": "tj-collin",
   "private": false,
   "main": "dist/index.js",
@@ -52,7 +52,7 @@
     "build-css": "node-sass ./src/components/GridFlowChart/style.scss ./dist/index.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build:prod"
+    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build"
   },
   "husky": {
     "hooks": {
