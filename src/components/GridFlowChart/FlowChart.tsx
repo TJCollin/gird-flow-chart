@@ -1,9 +1,8 @@
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
-import { StrokeData, Svg, SVG } from "@svgdotjs/svg.js";
+import { Svg, SVG } from "@svgdotjs/svg.js";
 import { FlowNode, FlowChartProps } from "./types";
 import { position, drawTexts, drawLines, drawGrid, drawRects } from "./utils";
-import { render } from "react-dom";
 
 const defaultLineStrokeData = { width: 1, color: "#000" };
 const defaultMargin = { x: 0, y: 0 };
