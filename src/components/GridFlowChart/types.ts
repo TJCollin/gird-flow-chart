@@ -1,4 +1,5 @@
 import { FillData, StrokeData } from "@svgdotjs/svg.js";
+import React, { ReactHTMLElement } from "react";
 
 export interface FlowNode {
   id: string | number;
@@ -85,4 +86,6 @@ export interface FlowChartProps {
   defaultTextFont?: Object;
   /**转折点离节点的距离 */
   dis?: number;
+  /**render 插槽 */
+  render: (node: FlowNode) => React.ReactElement;
 }
