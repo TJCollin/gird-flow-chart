@@ -34,14 +34,13 @@ const FlowChart: React.FC<FlowChartProps> = (props) => {
 
   const renderNodes = () => {
     return nodes.map((node: FlowNode) => {
-      const childrenComponents = React.Children.map<ReactNode, ReactNode>(
-        children,
-        (child) => {
-          if (React.isValidElement(child)) {
-            return React.cloneElement(child, { node: { ...node } });
-          }
-        }
-      );
+      const childrenComponents = render
+        ? undefined
+        : React.Children.map<ReactNode, ReactNode>(children, (child) => {
+            if (React.isValidElement(child)) {
+              return React.cloneElement(child, { node: { ...node } });
+            }
+          });
       return (
         <div
           className="flow-node"
@@ -55,7 +54,7 @@ const FlowChart: React.FC<FlowChartProps> = (props) => {
           )}
           key={node.id}
         >
-          {render(node)}
+          {render && render(node)}
           {childrenComponents}
         </div>
       );
