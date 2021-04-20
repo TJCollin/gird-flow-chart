@@ -354,9 +354,10 @@ function App() {
               texts={texts}
               dis={15}
               defaultLineStroke={lineStroke}
-            >
-              <FlowNodeComponent></FlowNodeComponent>
-            </GridFlowChart>
+              render={(node) => (
+                <FlowNodeComponent node={node}></FlowNodeComponent>
+              )}
+            ></GridFlowChart>
           </div>
         </div>
       </Content>

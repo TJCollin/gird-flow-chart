@@ -11,12 +11,10 @@ import {
 } from "./types";
 
 /**
- * 根据开始节点和结束节点给出中间的折线连接节点
- * @param line
- * @param nodes
- * @param dis
- * @param cols
- * @param rows
+ * 找出节点上的连接中点
+ * @param node
+ * @param type
+ * @param direction
  * @param colWidth
  * @param rowHeight
  * @param nodeHeight
@@ -25,129 +23,45 @@ import {
  * @param arrowZoom
  * @returns
  */
-export const linePath = (
-  line: Line,
-  nodes: FlowNode[],
-  dis: number,
-  cols: unknown[][],
-  rows: unknown[][],
+export const nodeMiddle = (
+  node: FlowNode,
+  type: number,
+  direction: Direction,
   colWidth: number,
   rowHeight: number,
   nodeHeight: number,
   nodeWidth: number,
   margin: NodeMargin,
   arrowZoom: number
-): string => {
-  const sourceNode = nodes.find((item) => item.id === line.source);
-  const targetNode = nodes.find((item) => item.id === line.target);
-
-  if (sourceNode && targetNode) {
-    const [[startX, startY], [endX, endY]] = points(
-      sourceNode,
-      targetNode,
-      colWidth,
-      rowHeight,
-      nodeHeight,
-      nodeWidth,
-      margin,
-      arrowZoom
-    );
-
-    // 连接点距离
-    let distance = dis;
-    let col = sourceNode.col;
-    let row = sourceNode.row;
-    let endRow = targetNode.row;
-    // 位于同一列处理
-    if (startX === endX) {
-      const sourceIndex = cols[col].findIndex((val) => val === sourceNode.id);
-      // 起点和终点在同一列且相邻
-      if (
-        targetNode.id === cols[col][sourceIndex + 1] ||
-        targetNode.id === cols[col][sourceIndex - 1]
-      ) {
-        return drawLineWithArc([
-          [startX, startY],
-          [endX, endY],
-        ]);
+): number[] => {
+  let x: number, y: number;
+  switch (direction) {
+    case "left":
+      x = node.col * colWidth;
+      if (type) {
+        x -= arrowZoom;
       }
-      // 起点和终点在同一列不相邻
-      // 位于第一列，则不能让连接线通过边界线
-      if (col === 0) {
-        col = 1;
+      return [x + margin.x, node.row * rowHeight + nodeHeight / 2 + margin.y];
+    case "top":
+      y = node.row * rowHeight;
+      if (type) {
+        y = y - arrowZoom;
       }
-      if (endY < startY) {
-        distance = -dis;
+      return [node.col * colWidth + nodeWidth / 2 + margin.x, y + margin.y];
+    case "bottom":
+      y = node.row * rowHeight + nodeHeight;
+      if (type) {
+        y = y + arrowZoom;
       }
-      return drawLineWithArc([
-        [startX, startY],
-        [startX, startY + distance],
-        [col * colWidth, startY + distance],
-        [col * colWidth, endY - distance],
-        [endX, endY - distance],
-        [endX, endY],
-      ]);
-    }
-    // 位于同一行处理
-    if (startY === endY) {
-      const sourceIndex = rows[row].findIndex((val) => val === sourceNode.id);
-      // 位于同一行且相邻
-      if (
-        targetNode.id === rows[row][sourceIndex + 1] ||
-        targetNode.id === rows[row][sourceIndex - 1]
-      ) {
-        // return [[startX, startY], [endX, endY]]
-        return drawLineWithArc([
-          [startX, startY],
-          [endX, endY],
-        ]);
+      return [node.col * colWidth + nodeWidth / 2 + margin.x, y + margin.y];
+    case "right":
+      x = node.col * colWidth + nodeWidth;
+      // type 1 代表该节点为连接线终点
+      if (type) {
+        x += arrowZoom;
       }
-      // 位于同一行不相邻
-      // 位于第一行处理
-      if (row === 0) {
-        row = 1;
-      }
-      if (endX < startX) {
-        distance = -dis;
-      }
-      // return [[startX, startY], [startX + distance, startY], [startX + distance, row * rowHeight], [endX - distance, row * rowHeight], [endX - distance, endY], [endX, endY]]
-      return drawLineWithArc([
-        [startX, startY],
-        [startX + distance, startY],
-        [startX + distance, row * rowHeight],
-        [endX - distance, row * rowHeight],
-        [endX - distance, endY],
-        [endX, endY],
-      ]);
-    }
-
-    // 不在同一行也不在同一列
-    if (endX < startX) {
-      distance = -dis;
-    }
-    // 如果两者在相邻列
-    if (Math.abs(targetNode.col - sourceNode.col) === 1) {
-      return drawLineWithArc([
-        [startX, startY],
-        [startX + distance, startY],
-        [startX + distance, endY],
-        [endX, endY],
-      ]);
-    }
-    // 如果不在相邻列
-    if (endY < startY) {
-      endRow += 1;
-    }
-    return drawLineWithArc([
-      [startX, startY],
-      [startX + distance, startY],
-      [startX + distance, endRow * rowHeight],
-      [endX - distance, endRow * rowHeight],
-      [endX - distance, endY],
-      [endX, endY],
-    ]);
+      return [x + margin.x, node.row * rowHeight + nodeHeight / 2 + margin.y];
   }
-  return "";
 };
 
 /**
@@ -351,10 +265,12 @@ export const drawLineWithArc = (points: number[][]): string => {
 };
 
 /**
- * 找出节点上的连接中点
- * @param node
- * @param type
- * @param direction
+ * 根据开始节点和结束节点给出中间的折线连接节点
+ * @param line
+ * @param nodes
+ * @param dis
+ * @param cols
+ * @param rows
  * @param colWidth
  * @param rowHeight
  * @param nodeHeight
@@ -363,45 +279,129 @@ export const drawLineWithArc = (points: number[][]): string => {
  * @param arrowZoom
  * @returns
  */
-export const nodeMiddle = (
-  node: FlowNode,
-  type: number,
-  direction: Direction,
+export const linePath = (
+  line: Line,
+  nodes: FlowNode[],
+  dis: number,
+  cols: unknown[][],
+  rows: unknown[][],
   colWidth: number,
   rowHeight: number,
   nodeHeight: number,
   nodeWidth: number,
   margin: NodeMargin,
   arrowZoom: number
-): number[] => {
-  let x: number, y: number;
-  switch (direction) {
-    case "left":
-      x = node.col * colWidth;
-      if (type) {
-        x -= arrowZoom;
+): string => {
+  const sourceNode = nodes.find((item) => item.id === line.source);
+  const targetNode = nodes.find((item) => item.id === line.target);
+
+  if (sourceNode && targetNode) {
+    const [[startX, startY], [endX, endY]] = points(
+      sourceNode,
+      targetNode,
+      colWidth,
+      rowHeight,
+      nodeHeight,
+      nodeWidth,
+      margin,
+      arrowZoom
+    );
+
+    // 连接点距离
+    let distance = dis;
+    let col = sourceNode.col;
+    let row = sourceNode.row;
+    let endRow = targetNode.row;
+    // 位于同一列处理
+    if (startX === endX) {
+      const sourceIndex = cols[col].findIndex((val) => val === sourceNode.id);
+      // 起点和终点在同一列且相邻
+      if (
+        targetNode.id === cols[col][sourceIndex + 1] ||
+        targetNode.id === cols[col][sourceIndex - 1]
+      ) {
+        return drawLineWithArc([
+          [startX, startY],
+          [endX, endY],
+        ]);
       }
-      return [x + margin.x, node.row * rowHeight + nodeHeight / 2 + margin.y];
-    case "top":
-      y = node.row * rowHeight;
-      if (type) {
-        y = y - arrowZoom;
+      // 起点和终点在同一列不相邻
+      // 位于第一列，则不能让连接线通过边界线
+      if (col === 0) {
+        col = 1;
       }
-      return [node.col * colWidth + nodeWidth / 2 + margin.x, y + margin.y];
-    case "bottom":
-      y = node.row * rowHeight + nodeHeight;
-      if (type) {
-        y = y + arrowZoom;
+      if (endY < startY) {
+        distance = -dis;
       }
-      return [node.col * colWidth + nodeWidth / 2 + margin.x, y + margin.y];
-    case "right":
-      x = node.col * colWidth + nodeWidth;
-      // type 1 代表该节点为连接线终点
-      if (type) {
-        x += arrowZoom;
+      return drawLineWithArc([
+        [startX, startY],
+        [startX, startY + distance],
+        [col * colWidth, startY + distance],
+        [col * colWidth, endY - distance],
+        [endX, endY - distance],
+        [endX, endY],
+      ]);
+    }
+    // 位于同一行处理
+    if (startY === endY) {
+      const sourceIndex = rows[row].findIndex((val) => val === sourceNode.id);
+      // 位于同一行且相邻
+      if (
+        targetNode.id === rows[row][sourceIndex + 1] ||
+        targetNode.id === rows[row][sourceIndex - 1]
+      ) {
+        // return [[startX, startY], [endX, endY]]
+        return drawLineWithArc([
+          [startX, startY],
+          [endX, endY],
+        ]);
       }
-      return [x + margin.x, node.row * rowHeight + nodeHeight / 2 + margin.y];
+      // 位于同一行不相邻
+      // 位于第一行处理
+      if (row === 0) {
+        row = 1;
+      }
+      if (endX < startX) {
+        distance = -dis;
+      }
+      // return [[startX, startY], [startX + distance, startY], [startX + distance, row * rowHeight], [endX - distance, row * rowHeight], [endX - distance, endY], [endX, endY]]
+      return drawLineWithArc([
+        [startX, startY],
+        [startX + distance, startY],
+        [startX + distance, row * rowHeight],
+        [endX - distance, row * rowHeight],
+        [endX - distance, endY],
+        [endX, endY],
+      ]);
+    }
+
+    // 不在同一行也不在同一列
+    if (endX < startX) {
+      distance = -dis;
+    }
+    // 如果两者在相邻列
+    if (Math.abs(targetNode.col - sourceNode.col) === 1) {
+      return drawLineWithArc([
+        [startX, startY],
+        [startX + distance, startY],
+        [startX + distance, endY],
+        [endX, endY],
+      ]);
+    }
+    // 如果不在相邻列
+    if (endY < startY) {
+      endRow += 1;
+    }
+    return drawLineWithArc([
+      [startX, startY],
+      [startX + distance, startY],
+      [startX + distance, endRow * rowHeight],
+      [endX - distance, endRow * rowHeight],
+      [endX - distance, endY],
+      [endX, endY],
+    ]);
   }
+  return "";
 };
 
 /**

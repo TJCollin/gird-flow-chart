@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
 
 import { Svg, SVG } from "@svgdotjs/svg.js";
 import { FlowNode, FlowChartProps } from "./types";
@@ -28,20 +28,20 @@ const FlowChart: React.FC<FlowChartProps> = (props) => {
     dis = 10,
     hoverLineColor = "#000",
     defaultGridStroke = defaultGridStrokeData,
-    // children,
+    children,
     render,
   } = props;
 
   const renderNodes = () => {
     return nodes.map((node: FlowNode) => {
-      // const childrenComponents = React.Children.map<ReactNode, ReactNode>(
-      //   children,
-      //   (child) => {
-      //     if (React.isValidElement(child)) {
-      //       return React.cloneElement(child, { ...node });
-      //     }
-      //   }
-      // );
+      const childrenComponents = React.Children.map<ReactNode, ReactNode>(
+        children,
+        (child) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, { node: { ...node } });
+          }
+        }
+      );
       return (
         <div
           className="flow-node"
@@ -56,6 +56,7 @@ const FlowChart: React.FC<FlowChartProps> = (props) => {
           key={node.id}
         >
           {render(node)}
+          {childrenComponents}
         </div>
       );
     });

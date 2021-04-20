@@ -5435,10 +5435,10 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
-grid-flow-chart-react@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/grid-flow-chart-react/-/grid-flow-chart-react-0.1.2.tgz#fa759945e170c5684502bdb5f4fce60d66449d5d"
-  integrity sha512-ieV44GM0ia12x5n7er97KyxBeu+ET04sh7WMHKqFzgGFhsP4Bo5QNsDZjycbMdVDTwKPi1XCu+pn4L91wJTXiw==
+grid-flow-chart-react@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/grid-flow-chart-react/-/grid-flow-chart-react-0.1.4.tgz#e4cb67634e2400b62506cf8cb56014d908fd58ea"
+  integrity sha512-d4/IoVtogH2YKFcadwCggLwiQIs4pAUQ1Qwc5ljFhZAxfbcInpBlFArUH5cxk7s93QnAsABTOR0r6gQWXeeqxQ==
   dependencies:
     "@svgdotjs/svg.js" "^3.0.16"
 

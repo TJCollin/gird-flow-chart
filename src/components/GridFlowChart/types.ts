@@ -1,5 +1,5 @@
 import { FillData, StrokeData } from "@svgdotjs/svg.js";
-import React, { ReactHTMLElement } from "react";
+import React from "react";
 
 export interface FlowNode {
   id: string | number;
