@@ -87,5 +87,5 @@ export interface FlowChartProps {
   /**转折点离节点的距离 */
   dis?: number;
   /**render 插槽 */
-  render: (node: FlowNode) => React.ReactElement;
+  render?: (node: FlowNode) => React.ReactElement;
 }

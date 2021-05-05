@@ -1,46 +1,117 @@
-# Getting Started with Create React App
+# React Grid Flow Chart
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What is Grid Flow Chart
 
-## Available Scripts
+Grid Flow Chart is a plugin which is aimed to build a highly customisable, declarative flow chart with SVG.Both [Vue version](https://github.com/TJCollin/grid-flow-chart-vue) and [React Version](https://github.com/TJCollin/grid-flow-chart-react) are provided.
 
-In the project directory, you can run:
+## example
 
-### `yarn start`
+[source code](https://github.com/TJCollin/grid-flow-chart-react/tree/main/example) of the example.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Install
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+yarn add grid-flow-chart-react
+```
 
-### `yarn test`
+```javascript
+import { GridFlowChart } from "grid-flow-chart-react";
+import "grid-flow-chart-react/dist/index.css";
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> please make sure you have imported the grid-flow-chart-react/dist/index.css file.
 
-### `yarn build`
+# API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+If you want to understand GridFlowChart thoroughly, you need to understand the common properties of its instances.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Properties
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Sometimes we want to do some extensions based on BetterScroll, we need to understand some of the properties of BetterScroll. Here are a few common properties.
 
-### `yarn eject`
+### nodes
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **Type**: `FlowNode[]`.
+- **Usage**: nodes of flow chart .
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### lines
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Type**: `Line[]`.
+- **Usage**: lines between nodes.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### hoverLineColor
 
-## Learn More
+- **Type**: `string`
+- **Usage**: determine the color when line hovered.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### defaultLineStroke
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Type**: `StrokeData`
+- **Usage**: default line stroke.
+
+### colWidth
+
+- **Type**: `number`
+- **Usage**: width of the grid.
+
+### rowHeight
+
+- **Type**: `number`
+- **Usage**: height of the grid.
+
+### nodeWidth
+
+- **Type**: `number`
+- **Usage**: width of the node.
+
+### nodeHeight
+
+- **Type**: `number`
+- **Usage**: height of the node.
+
+### margin
+
+- **Type**: `NodeMargin`
+- **Usage**: top and left margin between node and grid.
+- **Note**: x represents left margin, y represents top margin.
+
+### grid
+
+- **Type**: `Grid`
+- **Usage**: grid lines.
+- **Note**: row represents horizontal grid line, column represents vertical grid line. 'a' means to show all horizontal or vertical grid lines
+
+### defaultGridStroke
+
+- **Type**: `StrokeData`,
+- **Usage**: default grid line stroke.
+
+### rects
+
+- **Type**: `RectArea[]`,
+- **Usage**: rect area.
+
+### defaultRectStroke
+
+- **Type**: `StrokeData`,
+- **Usage**: default rect border stroke.
+
+### texts
+
+- **Type**: `FlowTextType[]`,
+- **Usage**: texts.
+
+### defaultTextFont
+
+- **Type**: `Object`,
+- **Usage**: default text font.
+
+### dis
+
+- **Type**: `number`,
+- **Usage**: distance between line break points and node.
+
+### render
+
+- **Type**: `(node: FlowNode) => React.ReactElement`,
+- **Usage**: slot for grid.
