@@ -4,6 +4,10 @@
 
 Grid Flow Chart is a plugin which is aimed to build a highly customisable, declarative flow chart with SVG.Both [Vue version](https://github.com/TJCollin/grid-flow-chart-vue) and [React Version](https://github.com/TJCollin/grid-flow-chart-react) are provided.
 
+## docs
+
+[Docs](https://tjcollin.github.io/grid-flow-chart-react/docs/en/)
+
 ## example
 
 [source code](https://github.com/TJCollin/grid-flow-chart-react/tree/main/example) of the example.
