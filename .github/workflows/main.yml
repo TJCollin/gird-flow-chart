@@ -33,4 +33,10 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build
-        run: yarn build
+        run: cd example && npm run build
+        
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v2
+        with:
+          name: production-files
+          path: ./build
