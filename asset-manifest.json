@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/grid-flow-chart-react/static/css/main.3ff46578.chunk.css",
-    "main.js": "/grid-flow-chart-react/static/js/main.7e4a71a8.chunk.js",
-    "main.js.map": "/grid-flow-chart-react/static/js/main.7e4a71a8.chunk.js.map",
-    "runtime-main.js": "/grid-flow-chart-react/static/js/runtime-main.822aa0d3.js",
-    "runtime-main.js.map": "/grid-flow-chart-react/static/js/runtime-main.822aa0d3.js.map",
-    "static/css/2.5e558b1f.chunk.css": "/grid-flow-chart-react/static/css/2.5e558b1f.chunk.css",
-    "static/js/2.ebcbbcaa.chunk.js": "/grid-flow-chart-react/static/js/2.ebcbbcaa.chunk.js",
-    "static/js/2.ebcbbcaa.chunk.js.map": "/grid-flow-chart-react/static/js/2.ebcbbcaa.chunk.js.map",
-    "static/js/3.76e548f1.chunk.js": "/grid-flow-chart-react/static/js/3.76e548f1.chunk.js",
-    "static/js/3.76e548f1.chunk.js.map": "/grid-flow-chart-react/static/js/3.76e548f1.chunk.js.map",
-    "index.html": "/grid-flow-chart-react/index.html",
-    "static/css/2.5e558b1f.chunk.css.map": "/grid-flow-chart-react/static/css/2.5e558b1f.chunk.css.map",
-    "static/css/main.3ff46578.chunk.css.map": "/grid-flow-chart-react/static/css/main.3ff46578.chunk.css.map",
-    "static/js/2.ebcbbcaa.chunk.js.LICENSE.txt": "/grid-flow-chart-react/static/js/2.ebcbbcaa.chunk.js.LICENSE.txt"
+    "main.css": "./static/css/main.4a6136a0.chunk.css",
+    "main.js": "./static/js/main.b1d784a7.chunk.js",
+    "main.js.map": "./static/js/main.b1d784a7.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.a4946dca.js",
+    "runtime-main.js.map": "./static/js/runtime-main.a4946dca.js.map",
+    "static/css/2.5e558b1f.chunk.css": "./static/css/2.5e558b1f.chunk.css",
+    "static/js/2.623fdead.chunk.js": "./static/js/2.623fdead.chunk.js",
+    "static/js/2.623fdead.chunk.js.map": "./static/js/2.623fdead.chunk.js.map",
+    "static/js/3.76e548f1.chunk.js": "./static/js/3.76e548f1.chunk.js",
+    "static/js/3.76e548f1.chunk.js.map": "./static/js/3.76e548f1.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/2.5e558b1f.chunk.css.map": "./static/css/2.5e558b1f.chunk.css.map",
+    "static/css/main.4a6136a0.chunk.css.map": "./static/css/main.4a6136a0.chunk.css.map",
+    "static/js/2.623fdead.chunk.js.LICENSE.txt": "./static/js/2.623fdead.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.822aa0d3.js",
+    "static/js/runtime-main.a4946dca.js",
     "static/css/2.5e558b1f.chunk.css",
-    "static/js/2.ebcbbcaa.chunk.js",
-    "static/css/main.3ff46578.chunk.css",
-    "static/js/main.7e4a71a8.chunk.js"
+    "static/js/2.623fdead.chunk.js",
+    "static/css/main.4a6136a0.chunk.css",
+    "static/js/main.b1d784a7.chunk.js"
   ]
 }
